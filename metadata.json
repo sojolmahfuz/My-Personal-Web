@@ -2,5 +2,7 @@
   "name": "Al Amin Mahfuz — Assistant Professor & Software Engineer Portfolio",
   "description": "Official academic and software engineering portfolio of Al Amin Mahfuz, Assistant Professor in Computer Science & Engineering at Rajshahi Science and Technology University (RSTU).",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

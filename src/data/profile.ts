@@ -44,7 +44,7 @@ export const profileData: ProfileData = {
     present: "Near VIP Hotel, Boro Horishpur, Kamarpara, Natore Sadar, Natore, Bangladesh",
     permanent: "Borogram Chalapukur, Ward 07, Komolpur Union, Dinajpur - 5200, Bangladesh",
   },
-  portraitImage: "/src/assets/images/al_amin_mahfuz_real_portrait_1791991099877.jpg",
+  portraitImage: "/images/al-amin-mahfuz.jpg",
   summary:
     "Assistant Professor in Computer Science & Engineering with 5+ years of software engineering background and university teaching leadership. Specializing in full-stack web architectures, deep learning with Python, networking, and enterprise cybersecurity.",
   statement:

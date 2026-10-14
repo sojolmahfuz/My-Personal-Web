@@ -1,6 +1,5 @@
-import { useState, useRef } from "react";
 import { motion } from "motion/react";
-import { Mail, Phone, MapPin, ArrowDown, FileText, Code2, Sparkles, GraduationCap, Camera, RefreshCw, Github } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowDown, FileText, Code2, Sparkles, GraduationCap, Github } from "lucide-react";
 import { profileData } from "../data/profile";
 import { getGitHubConfig } from "../lib/github";
 
@@ -13,53 +12,11 @@ interface HeroProps {
 
 export default function Hero({
   portraitImage = profileData.portraitImage,
-  onUpdatePortrait,
-  onResetPortrait,
   onOpenCvModal,
 }: HeroProps) {
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [isDragOver, setIsDragOver] = useState(false);
   const githubConfig = getGitHubConfig();
   const currentGithubUsername = githubConfig.username || profileData.githubUsername;
   const currentGithubUrl = `https://github.com/${currentGithubUsername}`;
-  const [isCustomPhoto, setIsCustomPhoto] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      return Boolean(localStorage.getItem("al_amin_raw_portrait"));
-    }
-    return false;
-  });
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result as string;
-        if (result && onUpdatePortrait) {
-          onUpdatePortrait(result);
-          setIsCustomPhoto(true);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result as string;
-        if (result && onUpdatePortrait) {
-          onUpdatePortrait(result);
-          setIsCustomPhoto(true);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
   const scrollToProjects = (e: React.MouseEvent) => {
     e.preventDefault();
     const el = document.getElementById("projects");
@@ -248,26 +205,7 @@ export default function Hero({
               className="relative w-full max-w-sm sm:max-w-md"
             >
               {/* Outer Decorative Gradient Border */}
-              <div
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  setIsDragOver(true);
-                }}
-                onDragLeave={() => setIsDragOver(false)}
-                onDrop={handleDrop}
-                className={`relative rounded-3xl p-1 bg-gradient-to-b from-[#00B8FF]/40 via-[#1687FF]/20 to-transparent shadow-2xl transition-all ${
-                  isDragOver ? "ring-4 ring-[#00B8FF] scale-[1.02]" : "shadow-[#00B8FF]/15"
-                }`}
-              >
-                {/* Hidden File Input for Native Raw Photo Selection */}
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={handleFileChange}
-                />
-
+              <div className="relative rounded-3xl p-1 bg-gradient-to-b from-[#00B8FF]/40 via-[#1687FF]/20 to-transparent shadow-2xl shadow-[#00B8FF]/15">
                 {/* Image Container */}
                 <div className="relative overflow-hidden rounded-[22px] bg-[#0C2340] aspect-square sm:aspect-[4/5] border border-[#1687FF]/30 group">
                   <img
@@ -282,34 +220,7 @@ export default function Hero({
                   />
 
                   {/* Gentle gradient scrim at bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#07182D] via-transparent to-transparent opacity-60" />
-
-                  {/* Raw Photo Action Overlay */}
-                  <div className="absolute bottom-3 right-3 flex items-center gap-2 z-30">
-                    <button
-                      type="button"
-                      onClick={() => fileInputRef.current?.click()}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold text-[#07182D] bg-[#00B8FF]/95 hover:bg-[#1687FF] hover:text-white rounded-lg shadow-md transition-all cursor-pointer backdrop-blur-sm"
-                      title="Load your raw original photo directly without any AI edits"
-                    >
-                      <Camera className="w-3.5 h-3.5" />
-                      <span>{isCustomPhoto ? "Replace Raw Photo" : "Select Raw Photo"}</span>
-                    </button>
-
-                    {isCustomPhoto && onResetPortrait && (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          onResetPortrait();
-                          setIsCustomPhoto(false);
-                        }}
-                        className="p-1.5 text-xs text-[#A9BDD5] hover:text-white bg-[#07182D]/80 rounded-lg border border-white/10 transition-colors cursor-pointer"
-                        title="Reset to default photo"
-                      >
-                        <RefreshCw className="w-3.5 h-3.5" />
-                      </button>
-                    )}
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#07182D] via-transparent to-transparent opacity-40 pointer-events-none" />
 
                   {/* Corner Accent Glow */}
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#00B8FF]/15 blur-2xl rounded-full pointer-events-none" />

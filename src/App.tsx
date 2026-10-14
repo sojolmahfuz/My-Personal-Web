@@ -95,8 +95,6 @@ export default function App() {
       <main>
         <Hero
           portraitImage={currentPortrait}
-          onUpdatePortrait={handleUpdatePortrait}
-          onResetPortrait={handleResetPortrait}
           onOpenCvModal={() => setIsCvModalOpen(true)}
         />
         <About onOpenCvModal={() => setIsCvModalOpen(true)} />
