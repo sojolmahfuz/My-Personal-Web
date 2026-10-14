@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #07182D;
+    --bg-secondary: #0C2340;
+    --bg-card: rgba(12, 35, 64, 0.7);
+    --accent-cyan: #00B8FF;
+    --accent-blue: #1687FF;
+    --text-primary: #F5F8FF;
+    --text-secondary: #A9BDD5;
+    --border-subtle: rgba(37, 150, 255, 0.18);
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+}
+
+.font-handwritten {
+  font-family: 'Caveat', cursive;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07182D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 184, 255, 0.25);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 184, 255, 0.45);
+}
+
+/* Subtle glow effects */
+.glow-cyan-sm {
+  box-shadow: 0 0 15px -3px rgba(0, 184, 255, 0.25);
+}
+
+.glow-cyan-md {
+  box-shadow: 0 0 25px -4px rgba(0, 184, 255, 0.35);
+}
+
+.glow-cyan-lg {
+  box-shadow: 0 0 40px -5px rgba(0, 184, 255, 0.4);
+}
+
+/* Radial background gradient helper */
+.bg-mesh-dark {
+  background-color: #07182D;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(0, 184, 255, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(22, 135, 255, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(0, 184, 255, 0.06) 0px, transparent 50%);
+}
